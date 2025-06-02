@@ -1,18 +1,41 @@
-from question_model import Question
-from data import question_data
-from quiz_brain import QuizBrain
+from turtle import Screen,Turtle
+from snake import Snake
+import time 
+screen = Screen()
+screen.setup(width=600,height=600)
+screen.bgcolor("black")
+screen.title("SARPANNA")
+screen.tracer(0)
 
-question_bank=[]
-for question in question_data:
-    question_text = question["text"]
-    question_answer = question["answer"]
-    new_question = Question(question_text,question_answer)
-    question_bank.append(new_question)
-quiz = QuizBrain(question_bank)
-quiz.next_question()
+snake = Snake()
 
-while quiz.still_has_question():
-    quiz.next_question()
 
-print("You've completed Quiz")
-print(f"your final score was :{quiz.score}/{quiz.question_number}")
+screen.listen()
+screen.onkey(snake.up, "Up")
+screen.onkey(snake.down, "Down")
+screen.onkey(snake.left, "Left")
+screen.onkey(snake.right, "Right")
+
+
+
+
+
+game_is_on =True
+while game_is_on:
+    screen.update()
+    time.sleep(0.1)
+
+    snake.move()
+
+
+
+
+
+
+
+
+
+
+
+
+screen.exitonclick()
